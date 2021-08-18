@@ -1,5 +1,6 @@
 teams= {}
 employees={}
+org= {}
 def add_employee():
 	employee_id = input("\tenter Employee id ")
 	if employee_id not in employees.keys():
@@ -31,15 +32,57 @@ def delete_employee():
 		del employees[employee_id]
 
 def search_employee():
-	name = input("\tEnter name")
-	found = False
-	for i in employees.values():
-		if i["name"] == name: 
-			print(f"\t{i['name']} | {i['age']} | {i['place']} | {i['gender']} | {i['previous_company']} | {i['salary']} ")
-			found = True
+	#name = input("\tEnter name")
+	#found = False
+	#for i in employees.values():
+	#	if i["name"] == name: 
+	#		print(f"\t{i['name']} | {i['age']} | {i['place']} | {i['gender']} | {i['previous_company']} | {i['salary']} ")
+	#		found = True
+	#		break
+	#	if found==False:
+	#		print("\tnot in the list")
+	print("Press 1 for search by name")
+	print("Press 2 for search by age")
+	print("Press 3 for search by salary")
+	print("Press 4 for search  by gender")
+	print("Press 5 for exit")
+	while True:
+	
+		choice = int(input("Enter choice : "))
+		if choice == 1:
+			search_by_name()
+		elif choice == 2:
+			search_by_age()
+		elif choice == 3:
+			search_by_salary()
+		elif choice == 4:
+			search_by_gender()
+		elif choice == 5:
 			break
-		if found==False:
-			print("\tnot in the list")
+		else:
+	
+
+		print("Invalid choice")
+
+def search_by_name():	
+	name=input("Enter the name: ")
+	print(list(filter(lambda a:a["name"] == name, employees.values())))
+	print("We Found")
+
+def search_by_age():	
+	age=int(input("Enter the age : "))
+	print(list(filter(lambda a:a["age"] == age, employees.values())))
+	print("We Found")
+
+def search_by_salary():	
+	salary=int(input("Enter the salary : "))
+	print(list(filter(lambda a:a["salary"] == salary, employees.values())))
+	print("We Found")
+
+def search_by_gender():	
+	gender=input("Enter the gender : ")
+	print(list(filter(lambda a:a["gender"] == gender, employees.values())))
+	print("We Found")
 
 def display_employee():
 	for id,employee in employees.items():
@@ -157,6 +200,41 @@ def delete_member(team_name):
 	else:
 		print("\t\tWrong serial No.")
 
+def add_oganization():
+	org['name']=input("enter organization name")
+	org['email']=input("enter organization  email")
+
+def edit_oganization():
+	print("1 for Edit Organization name ")
+	print("2 for Edit Organization email")
+	choice = int(input("Enter choice: "))
+	if choice == 1:
+		org['name'] = input("enter new organization name")
+	elif choice == 2:
+		org['email'] = input("enter new organization email")	
+	else:
+		print("invalid choice")
+def display_organization():
+	print(org)
+
+def org_details():
+	print("enter 1 for Add Organization")
+	print("enter 2 for Edit Organization")
+	print("enter 3 Display Organization details")
+	print("enter 4 for exit")
+	while True:
+	
+		choice = int(input("Enter choice : "))
+		if choice == 1:
+			add_oganization()
+		elif choice == 2:
+			edit_oganization()
+		elif choice == 3:
+			display_organization()
+		elif choice == 4:
+			break
+		else:
+			print("Invalid choice")	
 
 
 while True:
@@ -168,6 +246,11 @@ while True:
 	print("Press 6 manage all teams")
 	print("Press 7 for Quit")
 	ch = int(input("Enter choice:"))
+	
+	org_details()
+	#first organization details 
+	main_menu()
+	ch=int(input("enter your choice: "))
 	if ch == 1:
 	#adding employee
 		add_employee()
