@@ -1,4 +1,5 @@
-from employee import Emp
+from user import User
+from employee import Employee
 from empstore import emp
 import change_employee as cemp
 import search_employee as semp
@@ -13,19 +14,8 @@ def main_menu():
 
 
 def add_employee():
-    emp_id = input("\tEnter employee id : ")
-    name = input("\tEnter employee name : ")
-    age = input("\tEnter employee's age : ")
-    gender = input("\tEnter employee's gender : ")
-    place = input("\tEnter employee's place : ")
-    salary = input("\tEnter employee's salary : ")
-    previous_company = input("\tEnter employee's previous company name : ")
-    joining_date = input("\tEnter employee's joining date : ")
-
-    emp_temp = Emp(emp_id, name, age, gender, place,
-                   salary, previous_company, joining_date)
-    emp.append(emp_temp)
-
+    emp.append(Employee())
+    emp[-1].insert()
 
 def delete_employee():
     name = input("Enter name :")
@@ -39,9 +29,7 @@ def delete_employee():
 
 def display_employee():
     for i in emp:
-        print(
-            f'{i.name} |{i.age} | {i.gender}|{i.place} |{i.salary} | {i.previous_company} | {i.joining_date} ')
-
+        i.display()
 
 
 
@@ -67,3 +55,4 @@ while True:
         break
     else:
         print("Invalid option")
+        
